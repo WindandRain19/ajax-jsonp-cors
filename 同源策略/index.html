@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>首页</title>
+  </head>
+  <body>
+    <h1>首页</h1>
+    <button>点击获取数据</button>
+
+    <script>
+      const btn = document.getElementsByTagName("button")[0];
+
+      btn.onclick = () => {
+        const xhr = new XMLHttpRequest();
+        // 因为满足同源策略,所以URL可以简写
+        xhr.open("GET", "/data");
+        xhr.send();
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === 4) {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              console.log(xhr.response);
+            }
+          }
+        };
+      };
+    </script>
+  </body>
+</html>
